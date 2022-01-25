@@ -47,13 +47,12 @@ class Graph(object):
         try:
             self.input_file = open(self.input_filename)
         except IOError as e:
-            print "%s: '%s'" % (e.strerror, e.filename)
+            print(f"{e.strerror}: '{e.filename}'")
             sys.exit(3)
-
         try:
             os.mkdir(self.output_dir)
         except (IOError, OSError) as e:
-            print "%s: '%s'" % (e.strerror, e.filename)
+            print(f"{e.strerror}: '{e.filename}'")
             sys.exit(3)
 
 
@@ -66,7 +65,7 @@ class Graph(object):
                 try:
                     self.generate()
                 except ValueError:
-                    print "Error generate graph"
+                    print("Error generating graph")
 
                 self.header = split_re.split(line.strip())
                 self.temp = []
@@ -76,7 +75,7 @@ class Graph(object):
         try:
             self.generate()
         except ValueError:
-            print "Error generate graph"
+            print("Error generating graph")
 
 
     def gen_title(self):
@@ -89,8 +88,8 @@ class Graph(object):
         if not self.temp:
             return
 
-        print "\nrows count: %d" % len(self.temp)
-        print self.gen_title()
+        print(f"\nrows count: {len(self.temp)}")
+        print(self.gen_title())
 
         plt.hold(True)
         fig = plt.figure()
